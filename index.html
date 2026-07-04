@@ -5,15 +5,12 @@
     <title>Self Help iEnabler</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <!-- CSS Framework -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     
     <style>
         body { background-color: #f7f7f7; padding: 20px; }
         .login-wrapper { max-width: 500px; margin-left: 0; }
         .form-label { font-weight: bold; }
-        
-        /* Logo size adjusted to match the scale of image_590260.png */
         .itslogimg img { height: 150px; width: auto; } 
     </style>
 </head>
@@ -50,7 +47,9 @@
 
             <div class="w3-section">
                 <label class="form-label">Pin:</label>
-                <input class="w3-input w3-border" type="password" name="pin" onBlur="chkZero(this);" required>
+                <!-- Added maxlength="5" and updated validation function -->
+                <input class="w3-input w3-border" type="password" name="pin" maxlength="5" onBlur="chkPin(this);" required>
+                <p class="w3-small w3-text-grey">5 numeric digits. Do not start with a 0.</p>
             </div>
 
             <div class="w3-section">
@@ -66,8 +65,25 @@
     </div>
 
     <script>
-        function chkZero(ctl) {
-            if (ctl.value.substr(0,1) == "0") {
+        function chkPin(ctl) {
+            let val = ctl.value;
+            
+            // Rule 1: Check if it is numeric
+            if (!/^\d+$/.test(val) && val !== "") {
+                alert("PIN must contain only numeric digits.");
+                ctl.focus();
+                return false;
+            }
+            
+            // Rule 2: Check for 5 digits (only if input is not empty)
+            if (val !== "" && val.length !== 5) {
+                alert("PIN must be exactly 5 digits.");
+                ctl.focus();
+                return false;
+            }
+            
+            // Rule 3: Check leading zero
+            if (val.substr(0,1) === "0") {
                 alert("Please do not start the PIN with a 0.");
                 ctl.focus();
                 ctl.select();
