@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Self Help iEnabler</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" type="text/css" href="/itsincludes/css/its.css">
+    <script src="/itsincludes/js/its_scripts.js" type="text/javascript"></script>
+    <script src="/itsincludes/js/overlib.js" type="text/javascript"></script>
+</head>
+<body class="w3-margin-left">
+
+    <div id="fra_header" class="fra_header w3-theme-l4">
+        <div class="fra_inst">UNIVERSITY OF LIMPOPO</div>
+        <div class="fra_date w3-hide-small">
+            <script type="text/javascript">prt_header_datestamp();</script>
+        </div>
+    </div>
+
+    <div class="w3-row-padding w3-margin-top">
+        
+        <div class="w3-half">
+            <div class="w3-card-4">
+                <header class="w3-container w3-blue">
+                    <h5>Prospective Students</h5>
+                </header>
+                <div class="w3-container w3-padding-16">
+                    <p>If you are a prospective student, not registered at this institution, please select the following option:</p>
+                    <div class="w3-center">
+                        <a href="#" class="w3-button"><i class="fa fa-graduation-cap"></i> <b>Apply</b></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w3-half">
+            <div class="w3-card-4">
+                <header class="w3-container w3-blue">
+                    <h5>Registered Users: Login Credentials</h5>
+                </header>
+                
+                <form class="w3-container w3-padding" name="frmLogin" method="post" action="w99pkg.mi_validate_user">
+                    <input type="hidden" name="authorise_function" value="Login">
+                    
+                    <div class="w3-small">
+                        <input type="radio" name="numtype" value="S" checked onClick="set_it();"> <label>Student</label>
+                        <input type="radio" name="numtype" value="P" onClick="set_it();"> <label>Personnel</label>
+                        <input type="radio" name="numtype" value="O" onClick="set_it();"> <label>Other</label>
+                        <input type="radio" name="numtype" value="A" onClick="set_it();"> <label>Alumni</label>
+                    </div>
+
+                    <div class="w3-section">
+                        <label id="LogUsr"><b>Student Number:</b></label>
+                        <input class="w3-input w3-border" type="text" name="unum" required>
+                    </div>
+
+                    <div class="w3-section">
+                        <label><b>Pin:</b></label>
+                        <input class="w3-input w3-border" type="password" name="pin" onBlur="chkZero(this);" required>
+                        <p class="w3-small">(5 numeric digits. Do not start with a 0.)</p>
+                    </div>
+
+                    <div class="w3-section">
+                        <label><b>Password:</b></label>
+                        <input class="w3-input w3-border" type="password" name="x_password">
+                    </div>
+
+                    <div class="w3-bar">
+                        <input type="submit" class="w3-button w3-light-grey w3-border w3-small" value="Login" onclick="document.frmLogin.authorise_function.value='Login';">
+                        <input type="button" class="w3-button w3-light-grey w3-border w3-small" value="Forgot Pin" onclick="document.frmLogin.authorise_function.value='sendLogin'; document.frmLogin.submit();">
+                        <input type="button" class="w3-button w3-light-grey w3-border w3-small" value="Change Pin" onclick="document.frmLogin.authorise_function.value='changePin'; document.frmLogin.submit();">
+                        <input type="button" class="w3-button w3-light-grey w3-border w3-small" value="Request A Pin" onclick="document.frmLogin.authorise_function.value='requestPin'; document.frmLogin.submit();">
+                    </div>
+                    <div class="w3-bar w3-margin-top">
+                        <input type="button" class="w3-button w3-light-grey w3-border w3-small" value="Forgot Student Number" onclick="document.frmLogin.authorise_function.value='forgotStno'; document.frmLogin.submit();">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script>
+    function chkZero(ctl) {
+        if (ctl.value.substr(0,1) == "0") {
+            alert("Please do not start the PIN with a 0.");
+            ctl.focus();
+            ctl.select();
+            return false;
+        }
+        return true;
+    }
+
+    function set_it() {
+        let form = document.frmLogin;
+        let radios = form.numtype;
+        let selectedValue = "S"; 
+        for (let i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+                selectedValue = radios[i].value;
+                break;
+            }
+        }
+
+        let newLabel = "Student Number: ";
+        if (selectedValue == 'P') { newLabel = "Personnel Number: "; }
+        else if (selectedValue == 'O') { newLabel = "External Number: "; }
+        else if (selectedValue == 'A') { newLabel = "Alumni Number: "; }
+        
+        document.getElementById("LogUsr").innerText = newLabel;
+        form.unum.focus();
+    }
+</script>
+
+</body>
+</html>
