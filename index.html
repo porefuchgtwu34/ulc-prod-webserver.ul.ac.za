@@ -40,12 +40,13 @@
 
             <div class="w3-section">
                 <label id="LogUsr" class="form-label">Student Number:</label>
-                <input class="w3-input w3-border" type="text" name="unum" placeholder="Enter 9 digits" maxlength="9" onBlur="chkStudentNumber(this);" required>
+                <input class="w3-input w3-border" type="text" name="unum" maxlength="9" onBlur="chkStudentNumber(this);" required>
             </div>
 
             <div class="w3-section">
                 <label class="form-label">Pin:</label>
                 <input class="w3-input w3-border" type="password" name="pin" maxlength="5" onBlur="chkPin(this);" required>
+                <p class="w3-small w3-text-grey">(5 numeric digits. Do not start with a 0.)</p>
             </div>
 
             <div class="w3-section">
@@ -63,19 +64,16 @@
     <script>
         function chkStudentNumber(ctl) {
             let val = ctl.value;
-            // 1. Check for letters (non-digits)
             if (/[^0-9]/.test(val) && val !== "") {
                 alert("Student Number must contain only numeric digits (no letters).");
                 ctl.focus();
                 return false;
             }
-            // 2. Check length (must be 9)
             if (val !== "" && val.length !== 9) {
                 alert("Student Number must be exactly 9 digits.");
                 ctl.focus();
                 return false;
             }
-            // 3. Check leading zero
             if (val.substr(0,1) === "0") {
                 alert("Student Number cannot start with 0.");
                 ctl.focus();
